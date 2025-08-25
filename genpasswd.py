@@ -9,8 +9,8 @@ digits_chars = '0123456789'
 punctuation_chars = '!"#$%&()*+,-./:;<=>?@^_`{|}~'
 
 def generate_password(length=10, uppercase=True, lowercase=True, digits=True, punctuation=True):
-    if length < 1:
-        return "Задана довжина пароля повинна бути не менша 1 символу"
+    if length < 4:
+        return "Задана довжина пароля повинна бути не менша 4 символів"
 
     character_pool = ''
     if uppercase:
