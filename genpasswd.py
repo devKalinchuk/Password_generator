@@ -24,14 +24,20 @@ def generate_password(length=10, uppercase=True, lowercase=True, digits=True, pu
     if not character_pool:
         return "At least one character type must be selected"
 
-    secure = random.SystemRandom()
-    password = ''.join(secure.choice(character_pool) for _ in range(length))
+    while True:
+        secure = random.SystemRandom()
+        password = ''.join(secure.choice(character_pool) for _ in range(length))
+        if (not uppercase or any(c in uppercase_chars for c in password)) and \
+           (not lowercase or any(c in lowercase_chars for c in password)) and \
+           (not digits or any(c in digits_chars for c in password)) and \
+           (not punctuation or any(c in punctuation_chars for c in password)):
+            break
     return password
 
 def parser():
     """Parse command line arguments."""
     arg_parser = argparse.ArgumentParser(description="Generate a random password.")
-    arg_parser.add_argument('-l', '--length', type=int, default=10, help='Length of the password (default: 10)')
+    arg_parser.add_argument('-l', '--length', type=int, default=10, metavar='', help='Length of the password (default: 10)')
     arg_parser.add_argument('-U', '--no-uppercase', action='store_false', help='Exclude uppercase letters')
     arg_parser.add_argument('-L', '--no-lowercase', action='store_false', help='Exclude lowercase letters')
     arg_parser.add_argument('-D', '--no-digits', action='store_false', help='Exclude digits')
