@@ -10,7 +10,7 @@ punctuation_chars = '!"#$%&()*+,-./:;<=>?@^_`{|}~'
 
 def generate_password(length=10, uppercase=True, lowercase=True, digits=True, punctuation=True):
     if length < 1:
-        return "Задана довжина паролю повинна бути не менша 1 символу"
+        return "Задана довжина пароля повинна бути не менша 1 символу"
 
     character_pool = ''
     if uppercase:
@@ -36,8 +36,8 @@ def generate_password(length=10, uppercase=True, lowercase=True, digits=True, pu
     return password
 
 def parser():
-    arg_parser = argparse.ArgumentParser(description="Генератор випадкового паролю.")
-    arg_parser.add_argument('-l', '--length', type=int, default=10, metavar='', help='Довжина паролю (за замовчуванням 10)')
+    arg_parser = argparse.ArgumentParser(description="Генератор випадкового пароля.")
+    arg_parser.add_argument('-l', '--length', type=int, default=10, metavar='', help='Довжина пароля (за замовчуванням 10)')
     arg_parser.add_argument('-U', '--no-uppercase', action='store_false', help='Виключити великі літери')
     arg_parser.add_argument('-L', '--no-lowercase', action='store_false', help='Виключити малі літери')
     arg_parser.add_argument('-D', '--no-digits', action='store_false', help='Виключити цифри')
