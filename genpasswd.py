@@ -9,9 +9,8 @@ digits_chars = '0123456789'
 punctuation_chars = '!"#$%&()*+,-./:;<=>?@^_`{|}~'
 
 def generate_password(length=10, uppercase=True, lowercase=True, digits=True, punctuation=True):
-    """Generate a random password."""
     if length < 1:
-        return "Password length must be at least 1"
+        return "Задана довжина паролю повинна бути не менша 1 символу"
 
     character_pool = ''
     if uppercase:
@@ -24,7 +23,7 @@ def generate_password(length=10, uppercase=True, lowercase=True, digits=True, pu
         character_pool += punctuation_chars
 
     if not character_pool:
-        return "At least one character type must be selected"
+        return "Принаймні одна опція повинна бути увімкнена"
 
     while True:
         secure = random.SystemRandom()
@@ -37,13 +36,12 @@ def generate_password(length=10, uppercase=True, lowercase=True, digits=True, pu
     return password
 
 def parser():
-    """Parse command line arguments."""
-    arg_parser = argparse.ArgumentParser(description="Generate a random password.")
-    arg_parser.add_argument('-l', '--length', type=int, default=10, metavar='', help='Length of the password (default: 10)')
-    arg_parser.add_argument('-U', '--no-uppercase', action='store_false', help='Exclude uppercase letters')
-    arg_parser.add_argument('-L', '--no-lowercase', action='store_false', help='Exclude lowercase letters')
-    arg_parser.add_argument('-D', '--no-digits', action='store_false', help='Exclude digits')
-    arg_parser.add_argument('-P', '--no-punctuation', action='store_false', help='Exclude punctuation characters')
+    arg_parser = argparse.ArgumentParser(description="Генератор випадкового паролю.")
+    arg_parser.add_argument('-l', '--length', type=int, default=10, metavar='', help='Довжина паролю (за замовчуванням 10)')
+    arg_parser.add_argument('-U', '--no-uppercase', action='store_false', help='Виключити великі літери')
+    arg_parser.add_argument('-L', '--no-lowercase', action='store_false', help='Виключити малі літери')
+    arg_parser.add_argument('-D', '--no-digits', action='store_false', help='Виключити цифри')
+    arg_parser.add_argument('-P', '--no-punctuation', action='store_false', help='Виключити символи пунктуації')
     return arg_parser.parse_args()
 
 if __name__ == '__main__':
